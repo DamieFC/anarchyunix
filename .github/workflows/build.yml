@@ -1,0 +1,47 @@
+name: Build Anarchy Unix
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+       
+     - name: Cache Toolchain
+       uses: actions/cache@v2
+       env:
+         cache-name: cache-toolchain
+       with:
+         path: |
+           **/toolchain
+         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/toolchain.sh') }}
+         restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/toolchain.sh') }}
+         
+     - name: Build i686-elf-gcc Toolchain
+       run: |
+         cd ./toolchain/
+         chmod +x ./toolchain.sh
+         ./toolchain.sh
+         
+     - name: Install Dependencies
+       run: |
+         sudo apt-get update
+         sudo apt-get install mtools xorriso
+         
+     - name: Build Anarchy Unix
+       run: |
+          make -j$(nproc)
+          
+     - name: Upload Build Artifact
+       uses: actions/upload-artifact@v2.2.3
+       with:
+         name: anarchy-unix-Build.iso
+         path: anarchy-unix.iso
+         if-no-files-found: warn
