@@ -35,6 +35,8 @@ jobs:
          sudo apt-get update
          sudo apt-get install mtools xorriso
          
+     - name: cd kernel
+       run: cd kernel
      - name: Build Anarchy Unix
        run: |
           make -j$(nproc)
