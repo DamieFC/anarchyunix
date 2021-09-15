@@ -6,7 +6,7 @@ AS = ./toolchain/compiler/bin/i686-elf-as
 LD = $(CC)
 INCLUDE = -I./kernel/include/ -I./kernel/ -I./lib/libc/include
 KERNEL_FILE = kernel.bin
-ISO_FILE = monkeOS.iso
+ISO_FILE = anarchy-unix.iso
 
 CFLAGS = -ffreestanding $(INCLUDE)
 LDFLAGS = -T./src/kernel/arch/$(ARCH)/linker.ld -ffreestanding -O2 -nostdlib
