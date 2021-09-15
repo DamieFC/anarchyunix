@@ -12,7 +12,7 @@ CFLAGS = -ffreestanding $(INCLUDE)
 LDFLAGS = -T./src/kernel/arch/$(ARCH)/linker.ld -ffreestanding -O2 -nostdlib
 
 C_SOURCES = $(shell find kernel/ -name '*.c')
-ASM_SOURCES = $(shell find src/kernel/ -name '*.S')
+ASM_SOURCES = $(shell find kernel/ -name '*.S')
 OBJ_FILES = $(C_SOURCES:.c=.o) $(ASM_SOURCES:.S=.o)
 
 $(ISO_FILE): $(KERNEL_FILE)
