@@ -44,7 +44,7 @@ void terminal_scroll(int line) {
  
 	for(loop = line * (VGA_WIDTH * 2) + 0xB8000; loop < VGA_WIDTH * 2; loop++) {
 		c = loop;
-		loop - (VGA_WIDTH * 2) = c;
+		c = loop - (VGA_WIDTH * 2);
 	}
 }
 
