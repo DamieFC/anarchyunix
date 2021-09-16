@@ -9,7 +9,7 @@ KERNEL_FILE = kernel.bin
 ISO_FILE = anarchy-unix.iso
 
 CFLAGS = -ffreestanding $(INCLUDE)
-LDFLAGS = -T./src/kernel/arch/$(ARCH)/linker.ld -ffreestanding -O2 -nostdlib
+LDFLAGS = -T./kernel/arch/$(ARCH)/linker.ld -ffreestanding -O2 -nostdlib
 
 C_SOURCES = $(shell find kernel/ -name '*.c')
 ASM_SOURCES = $(shell find kernel/ -name '*.S')
