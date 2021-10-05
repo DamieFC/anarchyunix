@@ -29,18 +29,15 @@ jobs:
          cd ./toolchain/
          chmod +x ./toolchain.sh
          ./toolchain.sh
-         
      - name: Install Dependencies
        run: |
          sudo apt-get update
          sudo apt-get install mtools xorriso
-         
      - name: cd kernel
        run: cd kernel
      - name: Build Anarchy Unix
        run: |
           make -j$(nproc)
-          
      - name: Upload Build Artifact
        uses: actions/upload-artifact@v2.2.3
        with:
