@@ -16,10 +16,8 @@ ASM_SOURCES = $(shell find kernel/ -name '*.S')
 OBJ_FILES = $(C_SOURCES:.c=.o) $(ASM_SOURCES:.S=.o)
 
 $(ISO_FILE): $(KERNEL_FILE)
-	@mkdir -p isodir/boot/grub/
-	@cp grub.cfg isodir/boot/grub/
-	@cp $(KERNEL_FILE) isodir/boot/
-	@grub-mkrescue -o $(ISO_FILE) isodir
+	@cp $(KERNEL_FILE) boot/
+	@grub-mkrescue -o $(ISO_FILE) boot
 
 $(KERNEL_FILE): $(OBJ_FILES)
 	@echo "LD $^"
